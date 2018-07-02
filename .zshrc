@@ -1,5 +1,5 @@
 export LANG=ja_JP.UTF-8     # 文字コードをUTF-8に設定
-bindkey -e                  # キーバインドを vi に設定
+bindkey -e                  # キーバインドを emacs に設定
 
 # 16.2.1 Changing Directories
 setopt auto_cd              # ディレクトリ名のみ入力時、cdを適応させる
@@ -31,7 +31,6 @@ setopt share_history        # 他のシェルのヒストリをリアルタイ�
 # 16.2.6 Input/Output
 setopt correct              # コマンドのスペルを訂正する
 setopt interactive_comments # コマンドラインでの#以降をコメントと見なす
-setopt print_exit_value     # 戻り値が 0 以外の場合終了コードを表示
 
 # 16.2.8 Prompting
 setopt prompt_subst         # プロンプト定義内で変数置換やコマンド置換を扱う
@@ -58,7 +57,7 @@ autoload -Uz compinit; compinit
 # prompt
 
 # normal user
-_prompt="%{${fg[cyan]}%}%n@%m %# %{${reset_color}%"
+_prompt="%{${fg[cyan]}%}%n@%m %(?.😗.🤔) %# %{${reset_color}%"
 _prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
 _rprompt="%{${fg[magenta]}%}[%~]%{${reset_color}%}"
 _sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
