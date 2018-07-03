@@ -57,10 +57,10 @@ autoload -Uz compinit; compinit
 # prompt
 
 # normal user
-_prompt="%{${fg[cyan]}%}%n@%m %(?.😗.🤔) %# %{${reset_color}%}"
-_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
-_rprompt="%{${fg[magenta]}%}[%~]%{${reset_color}%}"
-_sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
+_prompt="%{%B${fg[cyan]}%}%n@%m %(?.😗.🤔) %# %{${reset_color}%b%}"
+_prompt2="%{%B${fg[cyan]}%}%_> %{${reset_color}%b%}"
+_rprompt="%{%B${fg[magenta]}%}[%~]%{${reset_color}%b%}"
+_sprompt="%{%B${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%b%}"
 
 # git
 autoload -Uz vcs_info
@@ -74,10 +74,10 @@ _rprompt=$_rprompt'${vcs_info_msg_0_}'
 
 # root user Bold and Underline
 if [ ${UID} -eq 0 ]; then
-  _prompt="%B%U${_prompt}%u%b"
-  _prompt2="%B%U${_prompt2}%u%b"
-  _rprompt="%B%U${_rprompt}%u%b"
-  _sprompt="%B%U${_sprompt}%u%b"
+  _prompt="%U${_prompt}%u%b"
+  _prompt2="%U${_prompt2}%u"
+  _rprompt="%U${_rprompt}%u"
+  _sprompt="%U${_sprompt}%u"
 fi
 
 PROMPT=$_prompt    # 通常のプロンプト
