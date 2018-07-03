@@ -72,9 +72,9 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 _rprompt=$_rprompt'${vcs_info_msg_0_}'
 
-# root user Bold and Underline
+# root user
 if [ ${UID} -eq 0 ]; then
-  _prompt="%U${_prompt}%u%b"
+  _prompt="%U${_prompt}%u"
   _prompt2="%U${_prompt2}%u"
   _rprompt="%U${_rprompt}%u"
   _sprompt="%U${_sprompt}%u"
