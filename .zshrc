@@ -57,7 +57,7 @@ autoload -Uz compinit; compinit
 # prompt
 
 # normal user
-_prompt="%{${fg[cyan]}%}%n@%m %(?.😗.🤔) %# %{${reset_color}%"
+_prompt="%{${fg[cyan]}%}%n@%m %(?.😗.🤔) %# %{${reset_color}%}"
 _prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
 _rprompt="%{${fg[magenta]}%}[%~]%{${reset_color}%}"
 _sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
