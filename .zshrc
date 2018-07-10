@@ -92,12 +92,12 @@ SPROMPT=$_sprompt  # スペル訂正用プロンプト
 ;
 
 # aliases
+alias ...='cd ../..'
+alias ....='cd ../../..'
 alias ls='ls -F --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias ...='cd ../..'
-alias ....='cd ../../..'
 alias d='docker $*'
 alias d-c='docker-compose $*'
 
