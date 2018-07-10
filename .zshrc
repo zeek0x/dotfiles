@@ -52,6 +52,7 @@ export GIT_EDITER=vi
 autoload -Uz colors; colors
 
 # completion
+fpath=(/usr/local/share/zsh-completions/src $fpath)
 autoload -Uz compinit; compinit
 
 # prompt
