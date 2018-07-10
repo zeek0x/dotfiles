@@ -107,3 +107,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # direnv activate
 eval "$(direnv hook zsh)"
+
+# local machine settings
+[ -f ~/.local/zsh.local ] && source ~/.local/zsh.local
