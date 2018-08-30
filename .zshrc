@@ -45,8 +45,8 @@ HISTSIZE=1000
 SAVEHIST=100000
 
 #  editer set
-export EDITER=vi
-export GIT_EDITER=vi
+export EDITOR=vi
+export GIT_EDITOR=vi
 
 # color
 autoload -Uz colors; colors
