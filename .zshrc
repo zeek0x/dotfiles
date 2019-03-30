@@ -52,7 +52,7 @@ export GIT_EDITOR=vi
 autoload -Uz colors; colors
 
 # completion
-fpath=(/usr/local/share/zsh-completions/src $fpath)
+fpath=(~/.zsh/zsh-completions/src ~/.zsh/completion $fpath)
 autoload -Uz compinit; compinit
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*' list-separator '|'
