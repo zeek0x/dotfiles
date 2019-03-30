@@ -109,4 +109,4 @@ alias ....='cd ../../..'
 eval "$(direnv hook zsh)"
 
 # local machine settings
-[ -f ~/.local/zsh.local ] && source ~/.local/zsh.local
+[ -f ~/.zsh/.zshrc.local ] && source ~/.zsh/.zshrc.local

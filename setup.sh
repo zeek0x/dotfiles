@@ -14,3 +14,6 @@ curl -L https://raw.github.com/git/git/master/contrib/completion/git-completion.
 curl -L https://raw.github.com/git/git/master/contrib/completion/git-completion.zsh > $HOME/.zsh/completion/_git
 curl -L https://raw.github.com/docker/cli/master/contrib/completion/zsh/_docker > ~/.zsh/completion/_docker
 rm -f ~/.zcompdump;
+
+# zsh local
+# ln -s $HOME/bin/dotfiles/.zshrc.ubuntu $HOME/.zsh/.zshrc.local
