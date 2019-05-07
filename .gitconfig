@@ -4,4 +4,8 @@
 [color]
 	ui = auto
 [alias]
+	a = add
+	b = branch
+	c = commit
+	co = checkout
 	lg = log --all --graph --oneline --decorate
