@@ -2,6 +2,7 @@
 - .zshrc
 - .zsh/*
 - .tmux.conf
+- .gitconfig
 
 ## Dependencies
 - zsh
