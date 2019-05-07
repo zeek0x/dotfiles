@@ -1,0 +1,11 @@
+[user]
+	email = 0h23k1.n40k1@gmail.com
+	name = 233k
+[color]
+	ui = auto
+[alias]
+	a = add
+	b = branch
+	c = commit
+	co = checkout
+	lg = log --all --graph --oneline --decorate
