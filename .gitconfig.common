@@ -7,5 +7,7 @@
 	a = add
 	b = branch
 	c = commit
+	d = diff
+	s = status
 	co = checkout
 	lg = log --all --graph --oneline --decorate
