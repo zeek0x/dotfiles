@@ -1,3 +1,22 @@
+[user]
+	email = 0h23k1.n40k1@gmail.com
+	name = 233k
+[core]
+	editor = vim
+[color]
+	branch = auto
+	diff = auto
+	status = auto	
+	ui = auto
+[alias]
+	a = add
+	b = branch
+	c = commit
+	cm = commit -m
+	camd = commit --amend
+	d = diff
+	s = status
+	co = checkout
+	lg = log --all --graph --oneline --decorate
 [include]
-	path = ~/.gitconfig.common
 	path = ~/.gitconfig.local

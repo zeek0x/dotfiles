@@ -1,0 +1,2 @@
+[includeIf "gitdir:~/src/ghe"]
+	path = ~/src/ghe/.gitconfig

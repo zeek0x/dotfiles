@@ -1,14 +1,11 @@
 #!/bin/bash
 
-DOT_FILES=(.zshrc .tmux.conf .gitconfig.common)
+DOT_FILES=(.zshrc .tmux.conf .gitconfig)
 
 for file in ${DOT_FILES[@]}
 do
   ln -s $HOME/bin/dotfiles/$file $HOME/$file
 done
-
-# For Git. (Git is unable to read symbolic link to .gitconfig ???)
-cp $HOME/bin/dotfiles/.gitconfig $HOME/.gitconfig
 
 # zsh completions
 mkdir -p $HOME/.zsh/completion
