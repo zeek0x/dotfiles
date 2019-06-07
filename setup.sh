@@ -10,9 +10,15 @@ done
 # zsh completions
 mkdir -p $HOME/.zsh/completion
 git clone git://github.com/zsh-users/zsh-completions.git $HOME/.zsh/zsh-completions
-curl -L https://raw.github.com/git/git/master/contrib/completion/git-completion.bash > $HOME/.zsh/completion/git-completion.bash
-curl -L https://raw.github.com/git/git/master/contrib/completion/git-completion.zsh > $HOME/.zsh/completion/_git
-curl -L https://raw.github.com/docker/cli/master/contrib/completion/zsh/_docker > ~/.zsh/completion/_docker
+if [[ ! -f $HOME/.zsh/completion/git-completion.bash ]]; then
+  curl -L https://raw.github.com/git/git/master/contrib/completion/git-completion.bash > $HOME/.zsh/completion/git-completion.bash
+fi
+if [[ ! -f $HOME/.zsh/completion/git-completion.bash ]]; then
+  curl -L https://raw.github.com/git/git/master/contrib/completion/git-completion.zsh > $HOME/.zsh/completion/_git
+fi
+if [[ ! -f $HOME/.zsh/completion/git-completion.bash ]]; then
+  curl -L https://raw.github.com/docker/cli/master/contrib/completion/zsh/_docker > $HOME/.zsh/completion/_docker
+fi
 rm -f ~/.zcompdump;
 
 # zsh local
