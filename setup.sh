@@ -20,4 +20,4 @@ ln -s $DIR/zsh-completions $HOME/.zsh/
 rm -f ~/.zcompdump;
 
 # zsh local
-# ln -s $HOME/bin/dotfiles/.zshrc.ubuntu $HOME/.zsh/.zshrc.local
+# ln -s $HOME/bin/dotfiles/.zshrc.linux $HOME/.zsh/.zshrc.local
