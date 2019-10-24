@@ -18,5 +18,8 @@
 	s = status
 	co = checkout
 	lg = log --all --graph --oneline --decorate
+	poh = push origin HEAD
+[ghq]
+	root = ~/src
 [include]
 	path = ~/.gitconfig.local
