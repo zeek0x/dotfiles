@@ -1,23 +1,29 @@
 #!/bin/bash
 
-DIR="$HOME/bin/dotfiles"
 DOT_FILES=(.zshrc .tmux.conf .gitconfig)
 
 for file in ${DOT_FILES[@]}
 do
-  ln -s $DIR/$file $HOME/$file
+  [ ! -L $HOME/$file ] && ln -s $PWD/$file $HOME/$file
 done
 
-# zsh completions
-GIT_BASH_URL="https://raw.github.com/git/git/master/contrib/completion/git-completion.bash"
-GIT_ZSH_URL="https://raw.github.com/git/git/master/contrib/completion/git-completion.zsh"
-DOCKER_ZSH_URL="https://raw.github.com/docker/cli/master/contrib/completion/zsh/_docker"
-curl -L $GIT_BASH_URL > $DIR/zsh-completions/src/git-completion.bash
-curl -L $GIT_ZSH_URL > $DIR/zsh-completions/src/_git
-curl -L $DOCKER_ZSH_URL > $DIR/zsh-completions/src/_docker
-[ -d $HOME/.zsh ] || mkdir $HOME/.zsh
-ln -s $DIR/zsh-completions $HOME/.zsh/
-rm -f ~/.zcompdump;
+# zsh completions & local
+HOME_ZSH=$HOME/.zsh
+if [ ! -d $HOME_ZSH/zsh-completions ]; then
+  mkdir $HOME_ZSH
+  ghq get git://github.com/zsh-users/zsh-completions.git
 
-# zsh local
-# ln -s $HOME/bin/dotfiles/.zshrc.linux $HOME/.zsh/.zshrc.local
+  ZSH_COMPLETIONS=$(ghq list --full-path zsh-completions)
+
+  GIT_BASH_URL="https://raw.github.com/git/git/master/contrib/completion/git-completion.bash"
+  GIT_ZSH_URL="https://raw.github.com/git/git/master/contrib/completion/git-completion.zsh"
+  DOCKER_ZSH_URL="https://raw.github.com/docker/cli/master/contrib/completion/zsh/_docker"
+  curl -sL $GIT_BASH_URL > $ZSH_COMPLETIONS/src/git-completion.bash
+  curl -sL $GIT_ZSH_URL > $ZSH_COMPLETIONS/src/_git
+  curl -sL $DOCKER_ZSH_URL > $ZSH_COMPLETIONS/src/_docker
+
+  ln -s $ZSH_COMPLETIONS $HOME_ZSH/zsh-completions
+  rm -f ~/.zcompdump;
+
+  ln -s $PWD/.zshrc.$(uname) $HOME_ZSH/.zshrc.local
+fi
