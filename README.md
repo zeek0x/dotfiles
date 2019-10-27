@@ -6,5 +6,4 @@
 ## Dependencies
 - zsh
 - git
-- direnv
 - peco
