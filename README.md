@@ -6,4 +6,5 @@
 ## Dependencies
 - zsh
 - git
+- ghe
 - peco
