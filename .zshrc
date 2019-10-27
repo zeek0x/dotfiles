@@ -103,7 +103,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # direnv activate
-[ `command -v direnv` ] eval "$(direnv hook zsh)"
+[ `command -v direnv` ] && eval "$(direnv hook zsh)"
 
 # local machine settings
 [ -f ~/.zsh/.zshrc.local ] && source ~/.zsh/.zshrc.local
