@@ -1,7 +1,6 @@
 # DOTFILES
 - .zshrc
 - .zsh/*
-- .tmux.conf
 - .gitconfig
 
 ## Dependencies
@@ -9,4 +8,3 @@
 - git
 - direnv
 - peco
-- tmux
