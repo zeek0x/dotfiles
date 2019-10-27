@@ -12,7 +12,7 @@ HOME_ZSH=$HOME/.zsh
 [ ! -d "$HOME_ZSH" ] && mkdir "$HOME_ZSH";
 
 if [ ! -d "$HOME_ZSH/zsh-completions" ]; then
-  ghq get git://github.com/zsh-users/zsh-completions.git
+  ghq get https://github.com/zsh-users/zsh-completions.git
 
   ZSH_COMPLETIONS=$(ghq list --full-path zsh-completions)
 
