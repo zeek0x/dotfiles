@@ -7,10 +7,11 @@ do
   [ ! -L $HOME/$file ] && ln -s $PWD/$file $HOME/$file
 done
 
-# zsh completions & local
+# zsh
 HOME_ZSH=$HOME/.zsh
+[ ! -d $HOME_ZSH ] && mkdir $HOME_ZSH;
+
 if [ ! -d $HOME_ZSH/zsh-completions ]; then
-  mkdir $HOME_ZSH
   ghq get git://github.com/zsh-users/zsh-completions.git
 
   ZSH_COMPLETIONS=$(ghq list --full-path zsh-completions)
@@ -24,6 +25,6 @@ if [ ! -d $HOME_ZSH/zsh-completions ]; then
 
   ln -s $ZSH_COMPLETIONS $HOME_ZSH/zsh-completions
   rm -f ~/.zcompdump;
-
-  ln -s $PWD/.zshrc.$(uname) $HOME_ZSH/.zshrc.local
 fi
+
+[ ! -L $HOME_ZSH/.zshrc.local ] && ln -s $PWD/.zshrc.$(uname) $HOME_ZSH/.zshrc.local
