@@ -65,8 +65,6 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-# prompt
-
 # normal user
 _prompt="%{%B${fg[cyan]}%}%n@%m %(?.😗.🤔) %# %{${reset_color}%b%}"
 _prompt2="%{%B${fg[cyan]}%}%_> %{${reset_color}%b%}"
@@ -98,8 +96,7 @@ SPROMPT=$_sprompt  # スペル訂正用プロンプト
 
 # ssh
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-  PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
-;
+  PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}";
 
 # aliases
 alias ...='cd ../..'
