@@ -1,6 +1,5 @@
 # DOTFILES
 - .zshrc
-- .zsh/*
 - .gitconfig
 
 ## Dependencies
