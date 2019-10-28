@@ -7,10 +7,10 @@ do
   [ ! -L "$HOME/$file" ] && ln -s "$PWD/$file" "$HOME/$file"
 done
 
-# zsh
 HOME_ZSH=$HOME/.zsh
 [ ! -d "$HOME_ZSH" ] && mkdir "$HOME_ZSH";
 
+# zsh completions
 if [ ! -d "$HOME_ZSH/zsh-completions" ]; then
   ghq get https://github.com/zsh-users/zsh-completions.git
 
@@ -27,4 +27,10 @@ if [ ! -d "$HOME_ZSH/zsh-completions" ]; then
   rm -f ~/.zcompdump;
 fi
 
+# oh-my-zsh
+ghq get https://github.com/robbyrussell/oh-my-zsh.git
+ZSH_CACHE_DIR=$HOME_ZSH/cache
+[ ! -d "$ZSH_CACHE_DIR" ] && mkdir "$ZSH_CACHE_DIR"
+
+# zsh local
 [ ! -L "$HOME_ZSH/.zshrc.local" ] && ln -s "$PWD/.zshrc.$(uname)" "$HOME_ZSH/.zshrc.local"

@@ -48,9 +48,6 @@ SAVEHIST=100000
 export EDITOR=vi
 export GIT_EDITOR=vi
 
-# color
-autoload -Uz colors; colors
-
 # completion
 fpath=(~/.zsh/zsh-completions/src $fpath)
 autoload -Uz compinit; compinit
@@ -65,38 +62,22 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-# normal user
-_prompt="%{%B${fg[cyan]}%}%n@%m %(?.😗.🤔) %# %{${reset_color}%b%}"
-_prompt2="%{%B${fg[cyan]}%}%_> %{${reset_color}%b%}"
-_rprompt="%{%B${fg[magenta]}%}[%~]%{${reset_color}%b%}"
-_sprompt="%{%B${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%b%}"
+# oh-my-zsh
+export ZSH=$(ghq list --full-path oh-my-zsh)
+export ZSH_CACHE_DIR=$HOME/.zsh/cache
+ZSH_THEME="agnoster"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
 
-# git
-autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-zstyle ':vcs_info:*' formats "%F{green} %c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
-_rprompt=$_rprompt'${vcs_info_msg_0_}'
+# [agnoster] Context: user (who am I)
+prompt_context() {
+    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+}
 
-# root user
-if [ ${UID} -eq 0 ]; then
-  _prompt="%U${_prompt}%u"
-  _prompt2="%U${_prompt2}%u"
-  _rprompt="%U${_rprompt}%u"
-  _sprompt="%U${_sprompt}%u"
-fi
-
-PROMPT=$_prompt    # 通常のプロンプト
-PROMPT2=$_prompt2  # セカンダリのプロンプト(コマンドが2行以上の時に表示される)
-RPROMPT=$_rprompt  # 右側のプロンプト
-SPROMPT=$_sprompt  # スペル訂正用プロンプト
-
-# ssh
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-  PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}";
+# [agnoster] Dir: current working directory
+prompt_dir() {
+  prompt_segment blue $CURRENT_FG `basename $PWD`
+}
 
 # aliases
 alias ...='cd ../..'
