@@ -76,7 +76,7 @@ prompt_context() {
 
 # [agnoster] Dir: current working directory
 prompt_dir() {
-  prompt_segment blue $CURRENT_FG `basename $PWD`
+  prompt_segment blue white '%c'
 }
 
 # aliases
