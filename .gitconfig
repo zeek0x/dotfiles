@@ -3,6 +3,11 @@
 	name = 233k
 [core]
 	editor = vim
+[pager]
+	branch = cat
+	status = cat
+	diff = less
+	log = less
 [color]
 	branch = auto
 	diff = auto
