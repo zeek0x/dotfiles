@@ -24,7 +24,6 @@ if [ ! -d "$HOME_ZSH/zsh-completions" ]; then
   curl -sL "$DOCKER_ZSH_URL" > "$ZSH_COMPLETIONS/src/_docker"
 
   ln -s "$ZSH_COMPLETIONS" "$HOME_ZSH/zsh-completions"
-  rm -f ~/.zcompdump;
 fi
 
 # oh-my-zsh
