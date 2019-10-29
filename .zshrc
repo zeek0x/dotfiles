@@ -49,8 +49,7 @@ export EDITOR=vi
 export GIT_EDITOR=vi
 
 # completion
-fpath=(~/.zsh/zsh-completions/src $fpath)
-autoload -Uz compinit; compinit
+autoload -Uz compinit; compinit -d $HOME/.zcompdump
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*' list-separator '|'
 zstyle ':completion:*:manuals' separate-sections true
