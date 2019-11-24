@@ -15,6 +15,7 @@
 	ui = auto
 [alias]
 	a = add
+	ap = add -p
 	b = branch
 	c = commit
 	cm = commit -m
@@ -22,8 +23,11 @@
 	d = diff
 	s = status
 	co = checkout
+	cob = checkout -b
 	lg = log --all --graph --oneline --decorate
 	poh = push origin HEAD
+	unchange = update-index --assume-unchanged
+	no-unchange = update-index --no-assume-unchanged
 [ghq]
 	root = ~/src
 [include]
