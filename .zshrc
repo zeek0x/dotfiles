@@ -48,6 +48,10 @@ SAVEHIST=100000
 export EDITOR=vi
 export GIT_EDITOR=vi
 
+# Go settings
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
+
 # completion
 fpath=($HOME/.zsh/zsh-completions/src $fpath)
 autoload -Uz compinit; compinit -d $HOME/.zcompdump
