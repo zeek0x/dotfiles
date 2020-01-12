@@ -44,7 +44,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=100000
 
-#  editer set
+# editer set
 export EDITOR=vi
 export GIT_EDITOR=vi
 
@@ -80,7 +80,20 @@ prompt_context() {
 
 # [agnoster] Dir: current working directory
 prompt_dir() {
-  prompt_segment cyan $CURRENT_FG '%c'
+  prompt_segment cyan $CURRENT_FG '%~'
+}
+
+# [agnoster] End the prompt
+prompt_end() {
+  if [[ -n $CURRENT_BG ]]; then
+    print -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+  else
+    print -n "%{%k%}"
+  fi
+  print -n "%{%f%}"
+  CURRENT_BG=''
+
+  printf "\n➜ ";
 }
 
 # aliases
