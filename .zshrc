@@ -93,12 +93,13 @@ prompt_end() {
   print -n "%{%f%}"
   CURRENT_BG=''
 
-  printf "\n➜ ";
+  printf "\n➜";
 }
 
 # aliases
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias g='git'
 
 # direnv activate
 [ `command -v direnv` ] && eval "$(direnv hook zsh)"

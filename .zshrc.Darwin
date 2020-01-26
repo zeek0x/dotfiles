@@ -1,6 +1,6 @@
 # History Search by peco
 function peco-history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco --prompt="history >"`
     CURSOR=$#BUFFER
     zle reset-prompt
 }
@@ -9,7 +9,7 @@ bindkey '^R' peco-history-selection
 
 # Change Directory by peco + ghq
 function peco-src () {
-    local selected_dir=$(ghq list | peco --query "$LBUFFER")
+    local selected_dir=$(ghq list | peco --prompt="ghq >" --query "$LBUFFER")
     if [ -n "$selected_dir" ]; then
         selected_dir="$HOME/src/$selected_dir"
         BUFFER="cd ${selected_dir}"
