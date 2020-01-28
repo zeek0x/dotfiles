@@ -20,6 +20,19 @@ function peco-src () {
 zle -N peco-src
 bindkey '^G' peco-src
 
+# Find File by peco + (git ls-files or find)
+function peco-find-file() {
+    if git rev-parse 2> /dev/null; then
+        source_files=$(git ls-files)
+    else
+        source_files=$(find . -type f)
+    fi
+    selected_file=$(echo $source_files | peco --prompt "Find >")
+    BUFFER="$BUFFER${selected_file}"
+}
+zle -N peco-find-file
+bindkey '^F' peco-find-file
+
 # aliases
 alias ls='ls -F -G'
 alias ll='ls -alF'
