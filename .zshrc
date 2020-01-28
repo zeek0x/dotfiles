@@ -96,6 +96,41 @@ prompt_end() {
   printf "\n➜";
 }
 
+# History Search by peco
+function peco-history() {
+    BUFFER=$(history -rn 1 | awk '!a[$0]++' | peco --prompt="HISTORY >")
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N peco-history
+bindkey '^R' peco-history
+
+# Change Directory by peco + ghq
+function peco-ghq () {
+    local selected_dir=$(ghq list | peco --prompt="GHQ >" --query "$LBUFFER")
+    if [ -n "$selected_dir" ]; then
+        selected_dir="$HOME/src/$selected_dir"
+        BUFFER="cd ${selected_dir}"
+        zle accept-line
+    fi
+    zle reset-prompt
+}
+zle -N peco-ghq
+bindkey '^G' peco-ghq
+
+# Find File by peco + (git ls-files or find)
+function peco-find() {
+    if git rev-parse 2> /dev/null; then
+        source_files=$(git ls-files)
+    else
+        source_files=$(find . -type f)
+    fi
+    selected_file=$(echo $source_files | peco --prompt "FIND >")
+    BUFFER="$BUFFER${selected_file}"
+}
+zle -N peco-find
+bindkey '^F' peco-find
+
 # aliases
 alias ...='cd ../..'
 alias ....='cd ../../..'
