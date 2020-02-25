@@ -98,7 +98,7 @@ prompt_end() {
 
 # History Search by peco
 function peco-history() {
-    BUFFER=$(history -rn 1 | awk '!a[$0]++' | peco --prompt="HISTORY >")
+    BUFFER=$(history -rn 1 | awk '!a[$0]++' | peco --prompt="HISTORY>")
     CURSOR=$#BUFFER
     zle reset-prompt
 }
@@ -107,7 +107,7 @@ bindkey '^R' peco-history
 
 # Change Directory by peco + ghq
 function peco-ghq () {
-    local selected_dir=$(ghq list | peco --prompt="GHQ >" --query "$LBUFFER")
+    local selected_dir=$(ghq list | peco --prompt="GHQ>" --query "$LBUFFER")
     if [ -n "$selected_dir" ]; then
         selected_dir="$HOME/src/$selected_dir"
         BUFFER="cd ${selected_dir}"
@@ -125,7 +125,7 @@ function peco-find() {
     else
         source_files=$(find . -type f)
     fi
-    selected_file=$(echo $source_files | peco --prompt "FIND >")
+    selected_file=$(echo $source_files | peco --prompt "FIND>")
     BUFFER="$BUFFER${selected_file}"
 }
 zle -N peco-find
