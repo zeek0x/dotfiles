@@ -11,7 +11,7 @@
 [color]
 	branch = auto
 	diff = auto
-	status = auto	
+	status = auto
 	ui = auto
 [alias]
 	a = add
@@ -26,9 +26,11 @@
 	cob = checkout -b
 	lg = log --all --graph --oneline --decorate
 	poh = push origin HEAD
-	unchange = update-index --assume-unchanged
-	no-unchange = update-index --no-assume-unchanged
+	unchanged-on = update-index --assume-unchanged
+	unchanged-off = update-index --no-assume-unchanged
 [ghq]
 	root = ~/src
 [include]
 	path = ~/.gitconfig.local
+[credential]
+	helper = "!f() { /root/.vscode-server/bin/5d424b828ada08e1eb9f95d6cb41120234ef57c7/node /tmp/vscode-remote-containers-b6facb32f61758ae9ef4d028ff14f3831f163146.js $*; }; f"
