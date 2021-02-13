@@ -1,3 +1,8 @@
 {
-    "build": { "dockerfile": "Dockerfile" }
+    "name": "zeek0x/dotfiles image",
+    "build": { "dockerfile": "Dockerfile" },
+    "postCreateCommand": "make",
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/zsh"
+    }
 }

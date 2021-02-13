@@ -1,0 +1,9 @@
+zinit light 'paulirish/git-open'
+zinit light 'mollifier/cd-gitroot'
+zinit light 'zsh-users/zsh-autosuggestions'
+zinit light 'zdharma/fast-syntax-highlighting'
+zinit snippet OMZL::git.zsh
+zinit snippet OMZP::git
+zinit cdclear -q
+zinit snippet OMZT::gnzh
+zinit light romkatv/powerlevel10k
