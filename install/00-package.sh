@@ -10,9 +10,9 @@ function darwin () {
 }
 
 function ubuntu () {
-  apt update -y
-  apt upgrade -y
-  apt install -y vim curl git zsh peco locales-all
+  apt-get update -y
+  apt-get upgrade -y
+  apt-get install -y vim curl git zsh peco locales-all
 }
 
 case $(os) in

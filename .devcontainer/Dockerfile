@@ -1,3 +1,3 @@
 FROM ubuntu:latest
 
-RUN apt update -y && apt install -y build-essential
+RUN apt-get update -y && apt-get install -y build-essential
