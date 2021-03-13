@@ -8,9 +8,7 @@ install:
 
 git:
 	@ln -sf "$(DOTFILES)/git/.gitconfig" "${HOME}/.gitconfig"
-	@if [ ! -e ~/.zshrc.local ]; then \
-		cp "$(DOTFILES)/git/.gitconfig.local" "${HOME}/"; \
-	fi
+	@cp -n "$(DOTFILES)/git/.gitconfig.local" "${HOME}/"; true
 
 zshrc: zsh zinit
 .PHONY: zsh zinit
