@@ -1,4 +1,4 @@
-DOTFILES=${PWD}
+DOTFILES := `pwd`
 
 all: install git zshrc
 .PHONY: install git zshrc
