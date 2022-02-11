@@ -8,6 +8,7 @@
 ## setup
 
 ```console
+$ git clone https://github.com/zeek0x/dotfiles.git; cd dotfiles
 $ make
 ```
 
