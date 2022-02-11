@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "$(dirname "$0")" && . ./util.sh
+
 function darwin () {
   brew install go
 }
