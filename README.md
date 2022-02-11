@@ -5,6 +5,8 @@
 - .zshrc
 - .gitconfig
 
+## setup
+
 ```console
 $ make
 ```
