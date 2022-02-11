@@ -1,24 +1,24 @@
 DOTFILES := `pwd`
 BASH := bash -euo pipefail
 
-all: install git zshrc
-.PHONY: install git zshrc
+all: install git zsh
+.PHONY: install git zsh
 
 install:
 	@find $(DOTFILES)/install -name "[0-9][0-9]-*.sh" | sort | $(BASH)
 
 git:
-	@ln -sf "$(DOTFILES)/git/.gitconfig" "${HOME}/.gitconfig"
+	@cp -f "$(DOTFILES)/git/.gitconfig" "${HOME}/.gitconfig"
 	@cp -n "$(DOTFILES)/git/.gitconfig.local" "${HOME}/"; true
 
-zshrc: zsh zinit
-.PHONY: zsh zinit
+zsh: zshrc zinit
+.PHONY: zshrc zinit
 
-zsh:
+zshrc:
 	@$(BASH) "$(DOTFILES)/zsh/build.sh"
-	@ln -sf "$(DOTFILES)/zsh/_build/.zshrc" "${HOME}/.zshrc"
-	@ln -sf "$(DOTFILES)/zsh/_build/.zshrc.zwc" "${HOME}/.zshrc.zwc"
+	@cp -f "$(DOTFILES)/zsh/_build/.zshrc" "${HOME}/.zshrc"
+	@cp -f "$(DOTFILES)/zsh/_build/.zshrc.zwc" "${HOME}/.zshrc.zwc"
 
 zinit:
 	@$(BASH) "$(DOTFILES)/zinit/setup.sh"
-	@ln -sf "$(DOTFILES)/zinit/.p10k.zsh" "${HOME}/.p10k.zsh"
+	@cp -sf "$(DOTFILES)/zinit/.p10k.zsh" "${HOME}/.p10k.zsh"
