@@ -5,7 +5,7 @@ all: install git zshrc
 .PHONY: install git zshrc
 
 install:
-	@find $(DOTFILES)/install -name "[0-9]{2}-*.sh" | $(BASH)
+	@find $(DOTFILES)/install -name "[0-9][0-9]-*.sh" | sort | $(BASH)
 
 git:
 	@ln -sf "$(DOTFILES)/git/.gitconfig" "${HOME}/.gitconfig"
