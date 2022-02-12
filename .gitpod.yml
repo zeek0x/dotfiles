@@ -1,0 +1,6 @@
+image: ubuntu:latest
+
+# Commands to start on workspace startup
+tasks:
+  - init: make
+    command: make
