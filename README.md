@@ -7,14 +7,21 @@
 
 ## setup
 
+Initializing the pc.
+
 ```console
 $ git clone https://github.com/zeek0x/dotfiles.git; cd dotfiles
-$ make
+$ ./setup.sh
+```
+
+Just update zshrc only.
+
+```console
+$ ./setup.sh -z
 ```
 
 ## Requirements
 
-- make
 - bash
 
 # References
