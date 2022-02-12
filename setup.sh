@@ -48,7 +48,8 @@ TASKS=$(
     echo "_zshrc"
   else
     echo "_install" "_git" "_zshrc" "_zinit"
-fi)
+  fi
+)
 
 for TASK in $TASKS
 do
