@@ -1,6 +1,5 @@
 # DOTFILES
 
-[![Gitpod build on container](https://img.shields.io/badge/Gitpod-build%20on%20container-ffeeba.svg?logo=gitpod&style=plastic)](https://gitpod.io/#https://github.com/zeek0x/dotfiles)
 [![Build on Ubuntu](https://github.com/zeek0x/dotfiles/actions/workflows/build-on-ubuntu.yml/badge.svg)](https://github.com/zeek0x/dotfiles/actions/workflows/build-on-ubuntu.yml)
 [![Build on macOS](https://github.com/zeek0x/dotfiles/actions/workflows/build-on-macos.yml/badge.svg)](https://github.com/zeek0x/dotfiles/actions/workflows/build-on-macos.yml)
 
