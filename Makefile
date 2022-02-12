@@ -21,4 +21,4 @@ zshrc:
 
 zinit:
 	@$(BASH) "$(DOTFILES)/zinit/setup.sh"
-	@cp -sf "$(DOTFILES)/zinit/.p10k.zsh" "${HOME}/.p10k.zsh"
+	@cp -f "$(DOTFILES)/zinit/.p10k.zsh" "${HOME}/.p10k.zsh"
