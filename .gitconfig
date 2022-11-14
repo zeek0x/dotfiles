@@ -1,6 +1,6 @@
 [user]
 	email = 0h23k1.n40k1@gmail.com
-	name = zeek0x
+	name = OHZEKI Naoki
 [core]
 	editor = vim
 [pager]
@@ -24,7 +24,7 @@
 	s = status
 	co = checkout
 	cob = checkout -b
-	lg = log --all --graph --oneline --decorate
+	lg = log --graph --oneline --decorate
 	poh = push origin HEAD
 	unchanged-on = update-index --assume-unchanged
 	unchanged-off = update-index --no-assume-unchanged
