@@ -22,6 +22,13 @@ export PAGER='less'
 # less
 export LESS='-i -M -R'
 
+# Go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+# fzf
+export FZF_DEFAULT_OPTS="--ansi --reverse --border"
+
 # Color
 autoload -Uz colors; colors
 
@@ -110,27 +117,26 @@ alias d='docker'
 
 [ $(command -v direnv) ] && eval "$(direnv hook zsh)"
 
-# Go settings
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+##################################################
+#                      fzf                       #
+##################################################
 
-GHQ_ROOT="~/src"
-
-# Change directory by peco + ghq
-function peco_ghq () {
-  selected_dir=$(ghq list | peco --prompt="GHQ>" --query "$LBUFFER")
+# Change directory by fzf + ghq
+function fzf_ghq () {
+  selected_dir=$(ghq list | fzf --prompt="GHQ>")
   if [ -n "$selected_dir" ]; then
-    selected_dir="$GHQ_ROOT/$selected_dir"
+    ghq_root=$(ghq root)
+    selected_dir="$ghq_root/$selected_dir"
     BUFFER="cd $selected_dir"
     zle accept-line
   fi
   zle reset-prompt
 }
-zle -N peco_ghq
-bindkey '^G' peco_ghq
+zle -N fzf_ghq
+bindkey '^G' fzf_ghq
 
-# Find by peco
-function peco_find() {
+# Find by fzf
+function fzf_find() {
   function source_files() {
     if git rev-parse 2> /dev/null ; then
       git ls-files
@@ -138,11 +144,45 @@ function peco_find() {
       find . -type f
     fi
   }
-  selected_file=$(source_files | peco --prompt "FIND>")
+  selected_file=$(source_files | fzf --prompt "FIND>")
   BUFFER="$BUFFER$selected_file"
 }
-zle -N peco_find
-bindkey '^F' peco_find
+zle -N fzf_find
+bindkey '^F' fzf_find
+
+function fco () {
+  local tags branches target
+  branches=$(
+    git --no-pager branch --all \
+      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
+    | sed '/^$/d') || return
+  tags=$(
+    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
+  target=$(
+    (echo "$branches"; echo "$tags") |
+    fzf --no-hscroll --no-multi -n 2 \
+        --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'") || return
+  git checkout $(awk '{print $2}' <<<"$target" )
+}
+
+function fdrm() {
+  docker ps -a | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $1 }' | xargs -r docker rm
+}
+
+function fdrmi() {
+  docker images | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $3 }' | xargs -r docker rmi
+}
+
+function femoji () {
+  cache="$HOME/.emoji_list"
+  if [ -n $cache ] ; then
+    curl -sSL -o $cache 'https://git.io/JXXO7'
+  fi
+  selected_emoji=$(cat $cache | fzf)
+  echo $selected_emoji
+}
+
+##################################################
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
