@@ -26,8 +26,6 @@
 	cob = checkout -b
 	lg = log --graph --oneline --decorate
 	poh = push origin HEAD
-	unchanged-on = update-index --assume-unchanged
-	unchanged-off = update-index --no-assume-unchanged
 [ghq]
 	root = ~/src
 [include]
