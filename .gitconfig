@@ -26,6 +26,8 @@
 	cob = checkout -b
 	lg = log --graph --oneline --decorate
 	poh = push origin HEAD
+[fetch]
+    prune = true
 [ghq]
 	root = ~/src
 [include]
