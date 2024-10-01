@@ -28,6 +28,8 @@
 	poh = push origin HEAD
 [fetch]
     prune = true
+[pull]
+    ff = only
 [ghq]
 	root = ~/src
 [include]
