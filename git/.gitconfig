@@ -3,6 +3,7 @@
 	name = OHZEKI Naoki
 [core]
 	editor = vim
+	excludesfile = ~/.gitignore_global
 [pager]
 	branch = cat
 	status = cat
@@ -30,7 +31,5 @@
     prune = true
 [pull]
     ff = only
-[ghq]
-	root = ~/src
-[include]
-	path = ~/.gitconfig.local
+[includeIf "gitdir:~/ghq/github.com/'Orgnaization'/**"]
+    path = .gitconfig.local

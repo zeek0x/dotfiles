@@ -1,0 +1,36 @@
+name: Create Release
+on:
+ push:
+  branches:
+  - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Set Time
+      env:
+        TZ: 'Asia/Tokyo'
+      run: echo "CURRENT_DATETIME=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
+    - run: echo "RELEASE_FILENAME=release_${{ env.CURRENT_DATETIME }}.zip" >> $GITHUB_ENV
+
+    - name: Create Package
+      env:
+        TZ: 'Asia/Tokyo'
+      run: script/release.sh ${{ env.RELEASE_FILENAME }}
+
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v0.1.15
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ env.CURRENT_DATETIME }}
+        name: ${{ env.CURRENT_DATETIME }}
+        draft: false
+        prerelease: false
+        files: ${{ env.RELEASE_FILENAME }}
