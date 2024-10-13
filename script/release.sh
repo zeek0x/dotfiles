@@ -14,6 +14,7 @@ mkdir "$DIR"
 zsh/concat.sh > "$DIR/.zshrc"
 cp "zinit/.p10k.zsh" "$DIR"
 cp git/.git* "$DIR"
+cp vim/.vimrc "$DIR"
 
 zip -r "$RELEASE_FILENAME" "$DIR"
 rm -r "$DIR"
