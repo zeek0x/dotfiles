@@ -1,35 +1,58 @@
 [user]
-	email = 0h23k1.n40k1@gmail.com
-	name = OHZEKI Naoki
+    email = 0h23k1.n40k1@gmail.com
+    name = OHZEKI Naoki
+
 [core]
-	editor = vim
-	excludesfile = ~/.gitignore_global
+    editor = vim
+    excludesfile = ~/.gitignore_global
+
 [pager]
-	branch = cat
-	status = cat
-	diff = less
-	log = less
+    branch = cat
+    status = cat
+    diff = less
+    log = less
+
 [color]
-	branch = auto
-	diff = auto
-	status = auto
-	ui = auto
+    branch = auto
+    diff = auto
+    status = auto
+    ui = auto
+
 [alias]
-	a = add
-	ap = add -p
-	b = branch
-	c = commit
-	cm = commit -m
-	camd = commit --amend
-	d = diff
-	s = status
-	co = checkout
-	cob = checkout -b
-	lg = log --graph --oneline --decorate
-	poh = push origin HEAD
+    a = add
+    ap = add -p
+    b = branch
+    c = commit
+    cm = commit -m
+    camd = commit --amend
+    d = diff
+    s = status
+    co = checkout
+    cob = checkout -b
+    lg = log --graph --oneline --decorate
+    poh = push origin HEAD
+    unchange = update-index --assume-unchanged
+    change = update-index --no-assume-unchanged
+
+    lof = "!f() { \
+        h=$(git log --oneline --decorate --color=always \"$@\" | \
+            fzf --ansi --reverse \
+                --bind 'enter:become(git rev-parse {+1})' \
+                --bind 'ctrl-r:change-preview-window(right:50%)' \
+                --bind 'right:change-preview-window(right:25%)' \
+                --bind 'left:change-preview-window(right:75%)' \
+                --preview 'git show --color=always {1}'); \
+        [ -z \"$h\" ] && exit 0; \
+        git show \"$h\"; f \"$@\"; \
+    }; f"
+
+    fixup-amend = "!f() { \
+        if [ -z \"$1\" ]; then echo \"Usage: git fixup-amend <commit-hash>\"; exit 1; fi; \
+        git commit --fixup=$1 && GIT_EDITOR=true git rebase -i --autosquash $1^; \
+    }; f"
+
 [fetch]
     prune = true
+
 [pull]
     ff = only
-[includeIf "gitdir:~/ghq/github.com/'Orgnaization'/**"]
-    path = .gitconfig.local
