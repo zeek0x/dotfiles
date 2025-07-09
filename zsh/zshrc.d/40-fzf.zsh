@@ -21,23 +21,58 @@ function fzf_find() {
       find . -type f
     fi
   }
-  selected_file=$(source_files | fzf --prompt "FIND>")
+  selected_file=$(source_files | fzf --prompt "Find>")
   BUFFER="$BUFFER$selected_file"
 }
 zle -N fzf_find
 bindkey '^F' fzf_find
 
-function fco () {
-  local tags branches target
-  branches=$(
-    git --no-pager branch --all \
-      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
-    | sed '/^$/d') || return
-  tags=$(
-    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
-  target=$(
-    (echo "$branches"; echo "$tags") |
-    fzf --no-hscroll --no-multi -n 2 \
-        --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'") || return
-  git checkout $(awk '{print $2}' <<<"$target" )
+# Git checkout by fzf
+function fzf_checkout() {
+  f() {
+    if ! git rev-parse --git-dir > /dev/null 2>&1; then
+      echo "error: Not a git repository." >&2
+      exit 1
+    fi
+    target=$({
+        git for-each-ref --format=$'\033[34;1mbranch\033[m\t%(refname:short)' refs/heads refs/remotes
+        git tag | sed $'s/^/\033[35;1mtag\033[m\t/'
+      } | fzf \
+        -n 2 \
+        --prompt "Branch or Tag> " \
+        --height=60% \
+        --preview="git log -150 --pretty=format:'%s' ..{2}" \
+        --preview-window=down:4:wrap
+    ) || exit 1
+    git checkout "$(cut -f2 <<<"$target")" || exit 1
+  }; (f)
+}
+# alias
+function fco() {
+  fzf_checkout "$@"
+}
+
+# History by fzf
+function fzf_history() {
+  BUFFER=$(history -n -r 1 | awk '!seen[$0]++' | fzf \
+    --prompt "History> " \
+    --height=40% \
+    --query "$LBUFFER" \
+    --preview "echo {}" \
+    --preview-window=down:4:wrap)
+    CURSOR="$#BUFFER"
+    zle reset-prompt
+}
+zle -N fzf_history
+bindkey '^r' fzf_history
+
+# Emoji selection by fzf
+function fzf_emoji () {
+  cache_dir="$HOME/.cache"
+  mkdir -p "$cache_dir"
+  cache="$cache_dir/emoji.txt"
+  if [ ! -f "$cache" ] ; then
+    curl -sSL -o "$cache" 'https://git.io/JXXO7'
+  fi
+  cat $cache | fzf -m
 }
