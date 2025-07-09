@@ -39,8 +39,8 @@
             fzf --ansi --reverse \
                 --bind 'enter:become(git rev-parse {+1})' \
                 --bind 'ctrl-r:change-preview-window(right:50%)' \
-                --bind 'right:change-preview-window(right:25%)' \
-                --bind 'left:change-preview-window(right:75%)' \
+                --bind 'alt-right:change-preview-window(right:25%)' \
+                --bind 'alt-left:change-preview-window(right:75%)' \
                 --preview 'git show --color=always {1}'); \
         [ -z \"$h\" ] && exit 0; \
         git show \"$h\"; f \"$@\"; \
