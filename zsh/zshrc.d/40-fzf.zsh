@@ -42,7 +42,7 @@ function fzf_checkout() {
         --prompt "Branch or Tag> " \
         --height=60% \
         --preview="git log -150 --pretty=format:'%s' ..{2}" \
-        --preview-window=down:4:wrap
+        --preview-window=down:6:wrap
     ) || exit 1
     git checkout "$(cut -f2 <<<"$target")" || exit 1
   }; (f)
@@ -59,7 +59,7 @@ function fzf_history() {
     --height=40% \
     --query "$LBUFFER" \
     --preview "echo {}" \
-    --preview-window=down:4:wrap)
+    --preview-window=down:3:wrap)
     CURSOR="$#BUFFER"
     zle reset-prompt
 }
