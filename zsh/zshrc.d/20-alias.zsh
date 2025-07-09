@@ -1,5 +1,4 @@
 alias sudo='sudo '
-alias refzsh='. ~/.zshrc'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias g='git'
