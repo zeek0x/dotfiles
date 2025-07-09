@@ -38,8 +38,8 @@
         h=$(git log --oneline --decorate --color=always \"$@\" | \
             fzf --ansi --reverse \
                 --bind 'enter:become(git rev-parse {+1})' \
-                --bind 'ctrl-r:change-preview-window(right:50%)' \
                 --bind 'alt-right:change-preview-window(right:25%)' \
+                --bind 'alt-down:change-preview-window(right:50%)' \
                 --bind 'alt-left:change-preview-window(right:75%)' \
                 --preview 'git show --color=always {1}'); \
         [ -z \"$h\" ] && exit 0; \
