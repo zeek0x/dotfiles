@@ -56,8 +56,9 @@ function fco() {
 function fzf_history() {
   BUFFER=$(history -n -r 1 | awk '!seen[$0]++' | fzf \
     --prompt "History> " \
-    --height=40% \
+    --height=60% \
     --query "$LBUFFER" \
+    --no-sort \
     --preview "echo {}" \
     --preview-window=down:3:wrap)
     CURSOR="$#BUFFER"
