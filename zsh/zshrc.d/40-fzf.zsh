@@ -52,21 +52,6 @@ function fco() {
   fzf_checkout "$@"
 }
 
-# History by fzf
-function fzf_history() {
-  BUFFER=$(history -n -r 1 | awk '!seen[$0]++' | fzf \
-    --prompt "History> " \
-    --height=60% \
-    --query "$LBUFFER" \
-    --no-sort \
-    --preview "echo {}" \
-    --preview-window=down:3:wrap)
-    CURSOR="$#BUFFER"
-    zle reset-prompt
-}
-zle -N fzf_history
-bindkey '^r' fzf_history
-
 # Emoji selection by fzf
 function fzf_emoji () {
   cache_dir="$HOME/.cache"

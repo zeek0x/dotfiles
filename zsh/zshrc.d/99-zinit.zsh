@@ -20,6 +20,7 @@ zinit light 'zsh-users/zsh-autosuggestions'
 zinit light 'zsh-users/zsh-completions'
 zinit light 'greymd/docker-zsh-completion'
 zinit light 'zdharma-continuum/fast-syntax-highlighting'
+zinit light 'zdharma/history-search-multi-word'
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit cdclear -q
