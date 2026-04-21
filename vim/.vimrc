@@ -31,16 +31,17 @@ set incsearch                 " インクリメンタル検索
 set ignorecase                " 大文字小文字を無視して検索
 set smartcase                 " 大文字を含む場合は大文字小文字を区別
 
-" ナビゲーションの設定
-set scrolloff=4               " カーソル周辺に常に8行分の余白を表示
-set sidescrolloff=4           " 横スクロール時にも余白を表示
+" ナビゲーションの設定（★修正箇所）
+set nowrap                    " 行を折り返さない（画面端のテキスト見切れ対策）
+set sidescroll=1              " 横スクロールを1文字ずつスムーズにする
+set sidescrolloff=5           " 横スクロール時に5文字分の余白を持たせる
+set scrolloff=4               " カーソル周辺に常に4行分の余白を表示
 
 " ファイル管理
 set autoread                  " 編集中のファイルが変更されたら自動で読み直す
 set undofile                  " ファイルごとに undo 履歴を保存
 set noswapfile                " スワップファイルを作成しない
 set nobackup                  " バックアップファイルを作成しない
-set noundofile                " アンドゥファイルを作成しない
 
 " キーマッピング
 vnoremap < <gv                " ビジュアルモードで左にインデント後に再選択
