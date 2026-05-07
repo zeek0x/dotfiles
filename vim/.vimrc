@@ -31,7 +31,7 @@ set incsearch                 " インクリメンタル検索
 set ignorecase                " 大文字小文字を無視して検索
 set smartcase                 " 大文字を含む場合は大文字小文字を区別
 
-" ナビゲーションの設定（★修正箇所）
+" ナビゲーションの設定
 set nowrap                    " 行を折り返さない（画面端のテキスト見切れ対策）
 set sidescroll=1              " 横スクロールを1文字ずつスムーズにする
 set sidescrolloff=5           " 横スクロール時に5文字分の余白を持たせる
@@ -46,3 +46,6 @@ set nobackup                  " バックアップファイルを作成しない
 " キーマッピング
 vnoremap < <gv                " ビジュアルモードで左にインデント後に再選択
 vnoremap > >gv                " ビジュアルモードで右にインデント後に再選択
+
+" カーソル位置の保存
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
